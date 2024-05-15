@@ -19,8 +19,10 @@ package org.apache.dubbo.samples.client;
 
 import java.io.IOException;
 
+import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.bootstrap.DubboBootstrap;
+import org.apache.dubbo.config.bootstrap.builders.ApplicationBuilder;
 import org.apache.dubbo.config.bootstrap.builders.ReferenceBuilder;
 import org.apache.dubbo.samples.api.GreetingsService;
 
@@ -34,18 +36,21 @@ public class ClientApplication {
 
     public static void main(String[] args) throws IOException {
 
+
         //客户端配置
-        ReferenceConfig<GreetingsService> reference =
+        ReferenceConfig<GreetingsService> referenceConfig =
                 ReferenceBuilder.<GreetingsService>newBuilder()
                 .interfaceClass(GreetingsService.class)
                 .url("tri://localhost:50052")
                 .build();
 
         //启动客户端
-        DubboBootstrap.getInstance().reference(reference).start();
+        DubboBootstrap.getInstance()
+                .reference(referenceConfig)
+                .start();
 
         //获取客户端调用实例
-        GreetingsService service = reference.get();
+        GreetingsService service = referenceConfig.get();
 
         //服务调用
         String message = service.sayHi("dubbo");

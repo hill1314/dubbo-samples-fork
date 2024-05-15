@@ -42,7 +42,10 @@ public class ProviderApplication {
                 .logger("slf4j").build();
 
         //协议配置
-        ProtocolConfig protocolConfig = ProtocolBuilder.newBuilder().name("tri").port(50052).build();
+        ProtocolConfig protocolConfig = ProtocolBuilder.newBuilder()
+                .name("tri")
+                .port(50052)
+                .build();
 
         //服务配置
         ServiceConfig<Object> serviceConfig = ServiceBuilder.newBuilder()

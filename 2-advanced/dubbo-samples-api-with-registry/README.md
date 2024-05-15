@@ -6,11 +6,11 @@ This sample code demonstrates building up dubbo service provider and service con
 
 ```bash
 mvn clean package
-mvn -Djava.net.preferIPv4Stack=true -Dexec.mainClass=org.apache.dubbo.samples.api.provider.Application exec:java
+mvn -Djava.net.preferIPv4Stack=true -Dexec.mainClass=org.apache.dubbo.samples.api.provider.ProviderApplication2 exec:java
 ```
 
 ## Invoke the service consumer
 
 ```bash
-mvn -Djava.net.preferIPv4Stack=true -Dexec.mainClass=org.apache.dubbo.samples.api.client.Application exec:java
+mvn -Djava.net.preferIPv4Stack=true -Dexec.mainClass=org.apache.dubbo.samples.api.client.ClientApplication2 exec:java
 ```
