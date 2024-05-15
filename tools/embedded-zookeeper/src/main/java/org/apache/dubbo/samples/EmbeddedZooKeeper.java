@@ -24,6 +24,12 @@ import org.apache.zookeeper.server.ServerConfig;
 import org.apache.zookeeper.server.ZooKeeperServerMain;
 import org.apache.zookeeper.server.quorum.QuorumPeerConfig;
 
+/**
+ * 嵌入式 ZooKeeper
+ *
+ * @author huleilei9
+ * @date 2024/05/15
+ */
 public class EmbeddedZooKeeper {
 
     public static void main(String[] args) throws Exception {
@@ -39,13 +45,15 @@ public class EmbeddedZooKeeper {
         properties.setProperty("dataDir", file.getAbsolutePath());
         properties.setProperty("clientPort", String.valueOf(port));
 
+        //配置
         QuorumPeerConfig quorumPeerConfig = new QuorumPeerConfig();
         quorumPeerConfig.parseProperties(properties);
 
-        ZooKeeperServerMain zkServer = new ZooKeeperServerMain();
         ServerConfig configuration = new ServerConfig();
         configuration.readFrom(quorumPeerConfig);
 
+        //服务
+        ZooKeeperServerMain zkServer = new ZooKeeperServerMain();
         System.setProperty("zookeeper.admin.enableServer", "false");
 
         try {

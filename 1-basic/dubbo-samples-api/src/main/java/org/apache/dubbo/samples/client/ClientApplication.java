@@ -24,19 +24,34 @@ import org.apache.dubbo.config.bootstrap.DubboBootstrap;
 import org.apache.dubbo.config.bootstrap.builders.ReferenceBuilder;
 import org.apache.dubbo.samples.api.GreetingsService;
 
-public class Application {
+/**
+ * 客户端应用程序
+ *
+ * @author huleilei9
+ * @date 2024/05/15
+ */
+public class ClientApplication {
+
     public static void main(String[] args) throws IOException {
+
+        //客户端配置
         ReferenceConfig<GreetingsService> reference =
                 ReferenceBuilder.<GreetingsService>newBuilder()
                 .interfaceClass(GreetingsService.class)
                 .url("tri://localhost:50052")
                 .build();
+
+        //启动客户端
         DubboBootstrap.getInstance().reference(reference).start();
+
+        //获取客户端调用实例
         GreetingsService service = reference.get();
 
+        //服务调用
         String message = service.sayHi("dubbo");
-
         System.out.println("Receive result ======> " + message);
+
+
         System.in.read();
         System.exit(0);
     }

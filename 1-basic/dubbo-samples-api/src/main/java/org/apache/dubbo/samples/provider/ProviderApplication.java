@@ -17,18 +17,44 @@
 
 package org.apache.dubbo.samples.provider;
 
+import org.apache.dubbo.config.ApplicationConfig;
+import org.apache.dubbo.config.ProtocolConfig;
+import org.apache.dubbo.config.ServiceConfig;
 import org.apache.dubbo.config.bootstrap.DubboBootstrap;
 import org.apache.dubbo.config.bootstrap.builders.ApplicationBuilder;
 import org.apache.dubbo.config.bootstrap.builders.ProtocolBuilder;
 import org.apache.dubbo.config.bootstrap.builders.ServiceBuilder;
 import org.apache.dubbo.samples.api.GreetingsService;
 
-public class Application {
+/**
+ * 提供者应用程序
+ *
+ * @author huleilei9
+ * @date 2024/05/15
+ */
+public class ProviderApplication {
+
     public static void main(String[] args) {
+
+        //应用配置
+        ApplicationConfig applicationConfig = ApplicationBuilder.newBuilder()
+                .name("dubbo-samples-api")
+                .logger("slf4j").build();
+
+        //协议配置
+        ProtocolConfig protocolConfig = ProtocolBuilder.newBuilder().name("tri").port(50052).build();
+
+        //服务配置
+        ServiceConfig<Object> serviceConfig = ServiceBuilder.newBuilder()
+                .interfaceClass(GreetingsService.class)
+                .ref(new GreetingsServiceImpl())
+                .build();
+
+        //启动应用
         DubboBootstrap.getInstance()
-                .application(ApplicationBuilder.newBuilder().name("dubbo-samples-api").logger("slf4j").build())
-                .protocol(ProtocolBuilder.newBuilder().name("tri").port(50052).build())
-                .service(ServiceBuilder.newBuilder().interfaceClass(GreetingsService.class).ref(new GreetingsServiceImpl()).build())
+                .application(applicationConfig)
+                .protocol(protocolConfig)
+                .service(serviceConfig)
                 .start()
                 .await();
     }

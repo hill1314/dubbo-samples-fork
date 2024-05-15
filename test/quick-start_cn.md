@@ -26,7 +26,7 @@ cd dubbo-samples
 
 ### 运行测试案例
 
-`run-tests.sh` 运行单个测试案例、测试案例列表或者全部测试案例。  
+`run-tests.sh` 运行单个测试案例、测试案例列表或者全部测试案例。
 
 `kill-tests.sh` 强制停止所有测试用例，停止所有dubbo containers及全部run-tests.sh/scenario.sh进程。
 
@@ -39,13 +39,13 @@ cd dubbo-samples
   ```
   ./test/run-tests.sh <project.basedir>
   ```
-  
+
   比如运行`dubbo-samples-annotation`测试案例：
-  
+
   ```
   ./test/run-tests.sh dubbo-samples-annotation
   ```
-  
+
 * 调试单个测试案例
 
   ```
@@ -53,29 +53,29 @@ cd dubbo-samples
   ```
 
   详细的调试方法，请参考"调试运行测试案例"小节。
-  
+
 * 运行指定的测试案例列表
 
   ```
   TEST_CASE_FILE=testcases1.txt ./test/run-tests.sh
   ```
- 
+
 * 运行全部测试案例
- 
+
   ```
    ./test/run-tests.sh
   ```
- 
+
   run-tests.sh 运行全部测试案例的原理:
 
-  (1) 查找所有`case-configuration.yml`  
+  (1) 查找所有`case-configuration.yml`
   (2) fork多进程按顺序运行测试案例
 
 
 ### 添加测试用例
 
- 测试用例配置文件名为：`case-configuration.yml`，放在每个需要测试的工程basedir下。 
- 
+ 测试用例配置文件名为：`case-configuration.yml`，放在每个需要测试的工程basedir下。
+
 #### 简单的测试案例
 
 测试工程满足以下条件，可以使用内置的模板简化配置：
@@ -118,7 +118,7 @@ from: app-external-zookeeper.yml
 
 props:
   project_name: dubbo-samples-api
-  main_class: org.apache.dubbo.samples.provider.Application
+  main_class: org.apache.dubbo.samples.provider.ProviderApplication
   dubbo_port: 20880
 ```
 
@@ -232,7 +232,7 @@ services:
 `systemProps` 系统属性添加zookeeper地址 `zookeeper.address=zookeeper`。
 
 `waitPortsBeforeRun` 等待端口添加zookeeper及前两个服务：
- 
+
 ```
     waitPortsBeforeRun:
       - zookeeper:2181
@@ -299,15 +299,15 @@ spring-boot.version=2.*
 
 ```
   dubbo.version=2.7*, 3.*
-```  
-  
+```
+
 * 具体的版本号
 
 下面的规则只匹配`2.7.8` 及 `2.7.9`，而不会匹配`2.7.8.1`：
 
 ```
   dubbo.version=2.7.8, 2.7.9
-```  
+```
 
 * 范围匹配
 
@@ -322,27 +322,27 @@ spring-boot.version=2.*
 ```
   dubbo.version=[ ">=2.7.8 <2.7.9" ]
 ```
-  
+
 
 * 排除版本
 
   通配符及具体版本号前加上'!'表示为其排除规则，排除(exclude)规则优先级高于其它包含(include)规则。
-  
+
   下面的匹配规则包含2.7开头的版本号，但排除了`2.7.8`：
-  
+
   ```
   dubbo.version=2.7.*, !2.7.8
   ```
-  
+
   下面的匹配规则包含2.7开头的版本号，但排除所有`2.7.8`开头的版本号，如 `2.7.8`, `2.7.8.1`：
   ```
   dubbo.version=2.7.*, !2.7.8*
   ```
-    
-  
+
+
 **注意：**
 
-  如果指定了多个匹配规则，最终计算是或(OR)操作，只要满足一条规则就include/exclude该版本号。  
+  如果指定了多个匹配规则，最终计算是或(OR)操作，只要满足一条规则就include/exclude该版本号。
 
 
 **版本匹配错误：**
@@ -359,15 +359,15 @@ Component not match: dubbo.version, rules: [3.*]
 * CANDIDATE_VERSIONS : 候选版本列表
 
   格式为: <组件版本变量名1>=<版本1>[,版本2];<组件版本变量名2>=<版本2.1>[,版本2.2];..
-  
+
   ```
   export CANDIDATE_VERSIONS="dubbo.version:3.0.0-SNAPSHOT;spring.version:4.3.16.RELEASE;spring-boot.version:1.5.13.RELEASE,2.1.1.RELEASE"
   ```
 
-* DUBBO_VERSION: Dubbo版本列表 
-  
+* DUBBO_VERSION: Dubbo版本列表
+
   只修改Dubbo版本，其它组件使用默认值。
-  
+
   ```
     export DUBBO_VERSION="3.0.0-SNAPSHOT"
   ```
@@ -397,7 +397,7 @@ dubbo 3.0 目前还没发正式版本，需要本地编译install到maven repo�
 git clone https://github.com/apache/dubbo.git dubbo3
 cd dubbo3
 git checkout 3.0
-./mvnw --batch-mode --no-transfer-progress  clean install -Dmaven.test.skip=true 
+./mvnw --batch-mode --no-transfer-progress  clean install -Dmaven.test.skip=true
 ```
 
 2、sample工程添加`case-configuration.yml` 及 `case-versions.conf`
@@ -445,98 +445,98 @@ cd dubbo-samples
 
   可以通过设置环境变量`DEBUG=service1,service2`来指定哪些app/test服务开启远程调试，自动分配debug端口，
   具体端口可以查看生成的`docker-compose.yml`文件。
-  
+
   **注意：调试运行为`suspend=y`模式，Java应用被挂起，等待调试客户端连接才能继续执行Java代码。**
-    
+
   下面以`dubbo-samples-annotation`举例说明如何调试运行测试案例。
-    
+
   查看case-configuration.yml配置，可知AnnotationProviderBootstrap的服务名称为`dubbo-samples-annotation`，
   test类的服务名为`dubbo-samples-annotation-test`。
-  
+
   * **调试provider类：AnnotationProviderBootstrap**
-  
+
     执行启动命令，以suspend模式启动AnnotationProviderBootstrap：
-    
+
     ```
     DEBUG=dubbo-samples-annotation ./test/run-tests.sh dubbo-samples-annotation
     ```
-    
+
     直到可以看到下面的日志信息：
-  
+
     ```
     + java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=20660 -cp '/usr/local/dubbo/app/classes:/usr/local/dubbo/app/dependency/*' org.apache.dubbo.samples.annotation.AnnotationProviderBootstrap
     Listening for transport dt_socket at address: 20660
     ```
-   
+
     要先在IDEA/eclipse上对要调试的代码加上断点，然后才能开始远程调试，这样可以调试应用启动过程。
 
     比如`AnnotationProviderBootstrap.main()` 第一行进行断点，然后创建远程调试，设置端口为20660。
-    
+
     连接上后，开始执行`AnnotationProviderBootstrap`，然后在断点处暂停。
-    
+
   * **调试test类：AnnotationServicesIT**
-    
+
     执行启动命令，以suspend模式启动test：
-    
+
     ```
     DEBUG=dubbo-samples-annotation-test ./test/run-tests.sh dubbo-samples-annotation
     ```
-    
+
     直到可以看到下面的日志信息：
-  
+
     ```
     + java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=20660 -Dzookeeper.address=dubbo-samples-annotation -Dzookeeper.port=2181 -Ddubbo.address=dubbo-samples-annotation -Ddubbo.port=20880 -jar dubbo-test-runner.jar /usr/local/dubbo/app/test-classes /usr/local/dubbo/app/classes /usr/local/dubbo/app/dependency /usr/local/dubbo//app/test-reports '**/*IT.class'
     Listening for transport dt_socket at address: 20660
     ```
     用上面的方法，先断点，然后再连接调试端口20660。
-   
+
   * **同时调试provider和test类**
-  
+
     执行调试启动命令
-    
+
     ```
     DEBUG=dubbo-samples-annotation,dubbo-samples-annotation-test ./test/run-tests.sh dubbo-samples-annotation
     ```
-    
+
     或者使用通配符：
-    
+
     ```
     DEBUG=dubbo* ./test/run-tests.sh dubbo-samples-annotation
     ```
-    
+
     同时调试多个suspend方式启动的app/test服务，需要按照依赖顺序连接调试端口，保证前置服务启动成功后，才能继续调试后一个服务。
-    
+
     首先看到`AnnotationProviderBootstrap`的调试端口：
-    
+
     ```
     + java -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=20660 -cp '/usr/local/dubbo/app/classes:/usr/local/dubbo/app/dependency/*' org.apache.dubbo.samples.annotation.AnnotationProviderBootstrap
     Listening for transport dt_socket at address: 20660
     ```
-    
+
     使用IDEA/eclipse 连接远程调试端口`localhost:20660`，连接上后测试继续运行，然后看到test类的调试端口：
-    
+
     ```
     + java -Dzookeeper.address=dubbo-samples-annotation -Dzookeeper.port=2181 -Ddubbo.address=dubbo-samples-annotation -Ddubbo.port=20880 -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=20661 -jar dubbo-test-runner.jar /usr/local/dubbo/app/test-classes /usr/local/dubbo/app/classes /usr/local/dubbo/app/dependency /usr/local/dubbo//app/test-reports '**/*IT.class'
     Listening for transport dt_socket at address: 20661
     ```
-    
+
     再次连接调试端口`localhost:20661`，test类继续执行。
-    
+
 
 **注意：**
-  
+
   test容器启动后先等待dubbo服务端口，循环检查直到连接成功后才启动test类。如果test服务依赖的端口没有连接成功，则test类不会启动，也就不能进行远程调试。
-  
+
   所以要保证AnnotationProviderBootstrap启动成功打开20880端口，test容器脚本检查[dubbo-samples-annotation:20880]端口连接成功，
   然后才会启动dubbo-test-runner执行testcase。
- 
- 
+
+
 ### 测试框架原理
 
 * 基于docker-compose 以容器方式运行
 
 * dubbo-test-runner 模块
-  
+
   构建`dubbo/sample-test` 镜像，在容器中启动Dubbo provider application 和 Dubbo testcase.
 
 * dubbo-scenario-builder 模块
@@ -544,32 +544,32 @@ cd dubbo-samples
   构建测试场景，包含`docker-compose.yml`及`scenario.sh`脚本等。
   构建成功后，`scenario.sh`脚本可以单独运行。
 
-   
+
 #### scenario测试步骤
 
-下面是脚本自动完成的步骤，只需要理解，不需要手工执行。    
+下面是脚本自动完成的步骤，只需要理解，不需要手工执行。
 对每个测试案例来说，都会按照下面的步骤进行处理。
-  
+
 * 编译测试工程
-  
+
   每个case单独编译，编译命令如下：
-  
+
   `mvn clean package dependency:copy-dependencies -DskipTests`
-  
+
   **注意： 如果是多模块的工程，可以将`case-configuration.yml`放到外层，保证可以独立编译整个case工程。**
-  
+
 * 生成测试场景
 
   测试场景`scenario_home`的位置位于`${project.basedir}/target`
-  
+
   `$scenario_home/scenario.sh`: 运行测试的脚本
-  
+
   `$scenario_home/docker-compose.yml` : 生成的容器配置文件
-  
+
   `$scenario_home/logs` : 测试相关日志
-   
+
 * 运行测试
 
   启动容器，等待并检查测试结果是否成功。
-  
+
   `$scenario_home/scenario.sh`

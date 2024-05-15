@@ -9,7 +9,7 @@ Run the command below to start the Dubbo rpc server
 
 ```bash
 mvn clean package
-mvn -Dexec.mainClass=org.apache.dubbo.samples.provider.Application exec:java
+mvn -Dexec.mainClass=org.apache.dubbo.samples.provider.ProviderApplication exec:java
 ```
 
 Now, you have a server running on port 50052 which accepts triple protocol requests.
@@ -38,5 +38,5 @@ curl \
 ### SDK client
 
 ```bash
-mvn -Dexec.mainClass=org.apache.dubbo.samples.client.Application exec:java
+mvn -Dexec.mainClass=org.apache.dubbo.samples.client.ClientApplication exec:java
 ```
