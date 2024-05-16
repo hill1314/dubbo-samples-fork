@@ -118,7 +118,7 @@ from: app-external-zookeeper.yml
 
 props:
   project_name: dubbo-samples-api
-  main_class: org.apache.dubbo.samples.provider.ProviderApplication
+  main_class: org.apache.dubbo.samples.provider.NoRegisterProviderApplication
   dubbo_port: 20880
 ```
 

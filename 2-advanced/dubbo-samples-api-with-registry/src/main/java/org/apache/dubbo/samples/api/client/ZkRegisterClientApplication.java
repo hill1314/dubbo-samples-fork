@@ -15,30 +15,36 @@
  * limitations under the License.
  */
 
-package org.apache.dubbo.samples.api.provider;
+package org.apache.dubbo.samples.api.client;
 
-import org.apache.dubbo.config.ProtocolConfig;
+import java.io.IOException;
+
+import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.RegistryConfig;
-import org.apache.dubbo.config.ServiceConfig;
 import org.apache.dubbo.config.bootstrap.DubboBootstrap;
 import org.apache.dubbo.samples.api.api.GreetingsService;
 
-public class ProviderApplication2 {
+public class ZkRegisterClientApplication {
     private static final String ZOOKEEPER_HOST = System.getProperty("zookeeper.address", "127.0.0.1");
     private static final String ZOOKEEPER_PORT = System.getProperty("zookeeper.port", "2181");
     private static final String ZOOKEEPER_ADDRESS = "zookeeper://" + ZOOKEEPER_HOST + ":" + ZOOKEEPER_PORT;
 
-    public static void main(String[] args) {
-        ServiceConfig<GreetingsService> service = new ServiceConfig<>();
-        service.setInterface(GreetingsService.class);
-        service.setRef(new GreetingsServiceImpl());
+    public static void main(String[] args) throws IOException {
+        ReferenceConfig<GreetingsService> reference = new ReferenceConfig<>();
+        reference.setInterface(GreetingsService.class);
 
         DubboBootstrap.getInstance()
-                .application("first-dubbo-provider")
+                .application("first-dubbo-consumer")
                 .registry(new RegistryConfig(ZOOKEEPER_ADDRESS))
-                .protocol(new ProtocolConfig("dubbo", -1))
-                .service(service)
-                .start()
-                .await();
+                .reference(reference)
+                .start();
+
+        GreetingsService service = reference.get();
+        String message = service.sayHi("dubbo");
+        System.out.println("Receive result ======> " + message);
+
+        System.in.read();
+        System.exit(0);
     }
+
 }

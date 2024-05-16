@@ -20,11 +20,11 @@
 
 ### 启动 Provider
 
-直接运行`org.apache.dubbo.springboot.demo.provider.ProviderApplication` directly from IDE.
+直接运行`org.apache.dubbo.springboot.demo.provider.SpringBootProviderApplication` directly from IDE.
 
 ### 启动 Consumer
 
-Start `org.apache.dubbo.springboot.demo.consumer.ConsumerApplication` directly from IDE.
+Start `org.apache.dubbo.springboot.demo.consumer.SpringBootConsumerApplication` directly from IDE.
 
 ### 查看 Trace 信息
 

@@ -19,10 +19,8 @@ package org.apache.dubbo.samples.client;
 
 import java.io.IOException;
 
-import org.apache.dubbo.config.ApplicationConfig;
 import org.apache.dubbo.config.ReferenceConfig;
 import org.apache.dubbo.config.bootstrap.DubboBootstrap;
-import org.apache.dubbo.config.bootstrap.builders.ApplicationBuilder;
 import org.apache.dubbo.config.bootstrap.builders.ReferenceBuilder;
 import org.apache.dubbo.samples.api.GreetingsService;
 
@@ -32,7 +30,7 @@ import org.apache.dubbo.samples.api.GreetingsService;
  * @author huleilei9
  * @date 2024/05/15
  */
-public class ClientApplication {
+public class NoRegisterClientApplication {
 
     public static void main(String[] args) throws IOException {
 

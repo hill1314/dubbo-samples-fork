@@ -29,11 +29,11 @@ Follow [Nacos's quick start](https://nacos.io/zh-cn/docs/v2/quickstart/quick-sta
 
 ### Start Provider
 
-Start `org.apache.dubbo.springboot.demo.provider.ProviderApplication` directly from IDE.
+Start `org.apache.dubbo.springboot.demo.provider.SpringBootProviderApplication` directly from IDE.
 
 ### Start Consumer
 
-Start `org.apache.dubbo.springboot.demo.consumer.ConsumerApplication` directly from IDE.
+Start `org.apache.dubbo.springboot.demo.consumer.SpringBootConsumerApplication` directly from IDE.
 
 ### Check Result
 

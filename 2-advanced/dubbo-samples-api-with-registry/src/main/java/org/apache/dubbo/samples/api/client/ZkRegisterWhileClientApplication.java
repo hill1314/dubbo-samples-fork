@@ -25,7 +25,13 @@ import org.apache.dubbo.config.RegistryConfig;
 import org.apache.dubbo.config.bootstrap.DubboBootstrap;
 import org.apache.dubbo.samples.api.api.GreetingsService;
 
-public class AlwaysApplication {
+/**
+ * 以ZK为注册中心的 客户端 应用程序
+ *
+ * @author huleilei9
+ * @date 2024/05/15
+ */
+public class ZkRegisterWhileClientApplication {
     private static final String ZOOKEEPER_HOST = System.getProperty("zookeeper.address", "127.0.0.1");
     private static final String ZOOKEEPER_PORT = System.getProperty("zookeeper.port", "2181");
     private static final String ZOOKEEPER_ADDRESS = "zookeeper://" + ZOOKEEPER_HOST + ":" + ZOOKEEPER_PORT;

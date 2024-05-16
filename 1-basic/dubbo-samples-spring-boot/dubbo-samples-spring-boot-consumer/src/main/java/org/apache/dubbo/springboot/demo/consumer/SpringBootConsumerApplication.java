@@ -21,11 +21,17 @@ import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * spring-boot消费者应用程序
+ *
+ * @author huleilei9
+ * @date 2024/05/16
+ */
 @SpringBootApplication
 @EnableDubbo
-public class ConsumerApplication {
+public class SpringBootConsumerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ConsumerApplication.class, args);
+        SpringApplication.run(SpringBootConsumerApplication.class, args);
     }
 }

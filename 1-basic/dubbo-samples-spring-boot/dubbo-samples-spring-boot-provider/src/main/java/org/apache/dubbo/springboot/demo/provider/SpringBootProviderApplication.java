@@ -22,10 +22,16 @@ import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * 提供者应用程序
+ *
+ * @author huleilei9
+ * @date 2024/05/16
+ */
 @SpringBootApplication
 @EnableDubbo
-public class ProviderApplication {
+public class SpringBootProviderApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ProviderApplication.class, args);
+        SpringApplication.run(SpringBootProviderApplication.class, args);
     }
 }

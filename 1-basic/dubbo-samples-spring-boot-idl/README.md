@@ -26,7 +26,7 @@ $ cd dubbo-samples-spring-boot-idl-provider
 
 then, run the following command to start provider:
 ```shell
-$ mvn compile exec:java -Dexec.mainClass="org.apache.dubbo.springboot.demo.provider.ProviderApplication"
+$ mvn compile exec:java -Dexec.mainClass="org.apache.dubbo.springboot.demo.provider.SpringBootProviderApplication"
 ```
 
 Run the following command to see server works as expected:
@@ -46,7 +46,7 @@ $ cd dubbo-samples-spring-boot-idl-consumer
 
 then, run the following command to start consumer:
 ```shell
-$ mvn compile exec:java -Dexec.mainClass="org.apache.dubbo.springboot.demo.consumer.ConsumerApplication"
+$ mvn compile exec:java -Dexec.mainClass="org.apache.dubbo.springboot.demo.consumer.SpringBootConsumerApplication"
 ```
 
 

@@ -25,11 +25,11 @@ Then you can verify zipkin server works by access [http://localhost:9411](http:/
 
 ### Start Provider
 
-Start `org.apache.dubbo.springboot.demo.provider.ProviderApplication` directly from IDE.
+Start `org.apache.dubbo.springboot.demo.provider.SpringBootProviderApplication` directly from IDE.
 
 ### Start Consumer
 
-Start `org.apache.dubbo.springboot.demo.consumer.ConsumerApplication` directly from IDE.
+Start `org.apache.dubbo.springboot.demo.consumer.SpringBootConsumerApplication` directly from IDE.
 
 ### Check Result
 

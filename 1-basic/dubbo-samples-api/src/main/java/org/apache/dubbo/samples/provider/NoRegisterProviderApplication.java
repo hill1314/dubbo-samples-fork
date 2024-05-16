@@ -32,7 +32,7 @@ import org.apache.dubbo.samples.api.GreetingsService;
  * @author huleilei9
  * @date 2024/05/15
  */
-public class ProviderApplication {
+public class NoRegisterProviderApplication {
 
     public static void main(String[] args) {
 
