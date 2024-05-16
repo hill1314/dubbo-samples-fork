@@ -19,7 +19,7 @@ Provider Application 和Test类中需要检查配置，参考下面的配置方�
   ```
   <dubbo:registry address="zookeeper://${zookeeper.address:127.0.0.1}:${zookeeper.port:2181}"/>
   ```
-  
+
   application.properties配置：
 
   ```
@@ -27,15 +27,15 @@ Provider Application 和Test类中需要检查配置，参考下面的配置方�
   ```
 
   Java代码中获取zk地址端口：
-  
+
   ```
-  String zookeeperHost = System.getProperty("zookeeper.address", "127.0.0.1"); 
+  String zookeeperHost = System.getProperty("zookeeper.address", "127.0.0.1");
   String zookeeperPort = System.getProperty("zookeeper.port", "2181");
   ```
 
 除了`registry`，还有其它使用到zookeeper的配置，如`config-center`, `metadata-report` 等。
 
-  
+
 ### 使用2个zookeeper
 
 如果测试案例使用到两个zk，则需要分别定义不同的系统变量，约定如下：
@@ -260,7 +260,7 @@ public static GenericContainer zookeeper = new FixedHostPortGenericContainer("zo
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-dependencies-zookeeper-curator5</artifactId>
-            <version>${dubbo.version}</version>
+            <version>3.3.0-beta.1</version>
             <type>pom</type>
         </dependency>
     </dependencies>
@@ -290,7 +290,7 @@ public static GenericContainer zookeeper = new FixedHostPortGenericContainer("zo
         <dependency>
             <groupId>org.apache.dubbo</groupId>
             <artifactId>dubbo-dependencies-zookeeper-curator5</artifactId>
-            <version>${dubbo.version}</version>
+            <version>3.3.0-beta.1</version>
             <type>pom</type>
         </dependency>
     </dependencies>
@@ -347,15 +347,15 @@ SpringBoot项目不要导入spring-framework-bom，避免因为传递的spring.v
 
 ```xml
 <dependencies>
-    <dependency>	
-        <groupId>org.apache.zookeeper</groupId>	
-        <artifactId>zookeeper</artifactId>	
-        <version>${zookeeper.version}</version>	
-    </dependency>	
-    <dependency>	
-        <groupId>org.apache.curator</groupId>	
-        <artifactId>curator-framework</artifactId>	
-        <version>${curator.version}</version>	
+    <dependency>
+        <groupId>org.apache.zookeeper</groupId>
+        <artifactId>zookeeper</artifactId>
+        <version>${zookeeper.version}</version>
+    </dependency>
+    <dependency>
+        <groupId>org.apache.curator</groupId>
+        <artifactId>curator-framework</artifactId>
+        <version>${curator.version}</version>
     </dependency>
 </dependencies>
 ```
